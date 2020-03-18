@@ -1,2 +1,5 @@
-# yuzuru2.github.io
-github page
+# github page
+
+## ディレクトリ
+
+- neta0 → 永遠に続くクソ計算クイズ(ネタ)
