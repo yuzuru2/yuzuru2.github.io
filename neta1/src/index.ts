@@ -10,17 +10,28 @@ class Calculation {
   // タイマーで使う
   private time_id;
 
-  // startメソッドを呼んだらtrueにする
-  private start_stop_flag = false;
-
   // シングルトン
   private constructor() {}
 
+  // dom
+  private readonly id_left = document.getElementById('left');
+  private readonly id_sign = document.getElementById('sign');
+  private readonly id_right = document.getElementById('right');
+  private readonly id_ans = document.getElementById('ans');
+  private readonly id_time = document.getElementById('time');
+  private readonly id_yes = document.getElementById('yes');
+  private readonly id_no = document.getElementById('no');
+
   // 問題セット
   private set_question(left, sign, right) {
-    document.getElementById('left').textContent = left;
-    document.getElementById('sign').textContent = sign;
-    document.getElementById('right').textContent = right;
+    this.id_left.textContent = left;
+    this.id_sign.textContent = sign;
+    this.id_right.textContent = right;
+  }
+
+  // 答えセット
+  private set_answer(ans: string) {
+    this.id_ans.textContent = ans;
   }
 
   // 足し算
@@ -31,22 +42,21 @@ class Calculation {
     this.set_question(_left, '+', _right);
 
     if (ans) {
-      document.getElementById('ans').textContent = `${_left + _right}`;
+      this.set_answer(`${_left + _right}`);
       return;
     }
 
     // 不正解作成パターン1
     if (Math.floor(Math.random() * 2) === 0) {
-      document.getElementById('ans').textContent = `${_left +
-        _right +
-        (Math.floor(Math.random() * 3) + 1)}`;
-      return;
+      this.set_answer(
+        `${_left + _right + (Math.floor(Math.random() * 3) + 1)}`
+      );
+    } else {
+      // 不正解作成パターン2
+      this.set_answer(
+        `${_left + _right - (Math.floor(Math.random() * 3) + 1)}`
+      );
     }
-
-    // 不正解作成パターン2
-    document.getElementById('ans').textContent = `${_left +
-      _right -
-      (Math.floor(Math.random() * 3) + 1)}`;
   }
 
   // 引き算
@@ -57,22 +67,21 @@ class Calculation {
     this.set_question(_left, '-', _right);
 
     if (ans) {
-      document.getElementById('ans').textContent = `${_left - _right}`;
+      this.set_answer(`${_left - _right}`);
       return;
     }
 
     // 不正解作成パターン1
     if (Math.floor(Math.random() * 2) === 0) {
-      document.getElementById('ans').textContent = `${_left -
-        _right +
-        (Math.floor(Math.random() * 3) + 1)}`;
-      return;
+      this.set_answer(
+        `${_left - _right + (Math.floor(Math.random() * 3) + 1)}`
+      );
+    } else {
+      // 不正解作成パターン2
+      this.set_answer(
+        `${_left - _right - (Math.floor(Math.random() * 3) + 1)}`
+      );
     }
-
-    // 不正解作成パターン2
-    document.getElementById('ans').textContent = `${_left -
-      _right -
-      (Math.floor(Math.random() * 3) + 1)}`;
   }
 
   // 掛け算
@@ -83,20 +92,21 @@ class Calculation {
     this.set_question(_left, '×', _right);
 
     if (ans) {
-      document.getElementById('ans').textContent = `${_left * _right}`;
+      this.set_answer(`${_left * _right}`);
       return;
     }
 
     // 不正解作成パターン1
     if (Math.floor(Math.random() * 2) === 0) {
-      document.getElementById('ans').textContent = `${_left * _right +
-        (Math.floor(Math.random() * 3) + 1)}`;
-      return;
+      this.set_answer(
+        `${_left * _right + (Math.floor(Math.random() * 3) + 1)}`
+      );
+    } else {
+      // 不正解作成パターン2
+      this.set_answer(
+        `${_left * _right - (Math.floor(Math.random() * 3) + 1)}`
+      );
     }
-
-    // 不正解作成パターン2
-    document.getElementById('ans').textContent = `${_left * _right -
-      (Math.floor(Math.random() * 3) + 1)}`;
   }
 
   // 割り算
@@ -115,27 +125,28 @@ class Calculation {
     this.set_question(_left, '÷', _right);
 
     if (ans) {
-      document.getElementById('ans').textContent = `${_left / _right}`;
+      this.set_answer(`${_left / _right}`);
       return;
     }
 
     // 不正解作成パターン1
     if (Math.floor(Math.random() * 2) === 0) {
-      document.getElementById('ans').textContent = `${_left / _right +
-        (Math.floor(Math.random() * 3) + 1)}`;
-      return;
+      this.set_answer(
+        `${_left / _right + (Math.floor(Math.random() * 3) + 1)}`
+      );
+    } else {
+      // 不正解作成パターン2
+      this.set_answer(
+        `${_left / _right - (Math.floor(Math.random() * 3) + 1)}`
+      );
     }
-
-    // 不正解作成パターン2
-    document.getElementById('ans').textContent = `${_left / _right -
-      (Math.floor(Math.random() * 3) + 1)}`;
   }
 
   // リセット
   private reset() {
     // タイマー処理
     const time_method = () => {
-      document.getElementById('time').textContent = `${--this.count}`;
+      this.id_time.textContent = `${--this.count}`;
 
       if (this.count === 0) {
         alert('タイムアップ');
@@ -151,7 +162,7 @@ class Calculation {
     this.time_id = setTimeout(time_method, 1000);
 
     // 時間セット
-    document.getElementById('time').textContent = `${this.count}`;
+    this.id_time.textContent = `${this.count}`;
 
     // 正解・不正解どちらの問題を出すか決める
     const ans = Math.floor(Math.random() * 2) === 0;
@@ -180,13 +191,13 @@ class Calculation {
     }
 
     // yesボタンを押したとき
-    document.getElementById('yes').onclick = () => {
+    this.id_yes.onclick = () => {
       ans ? alert('正解') : alert('不正解');
       this.reset();
     };
 
     // noボタンを押したとき
-    document.getElementById('no').onclick = () => {
+    this.id_no.onclick = () => {
       ans ? alert('不正解') : alert('正解');
       this.reset();
     };
@@ -204,18 +215,7 @@ class Calculation {
 
   // クイズをスタートする
   public start() {
-    if (!this.start_stop_flag) {
-      this.reset();
-      this.start_stop_flag = true;
-    }
-  }
-
-  // クイズを止める
-  public stop() {
-    if (this.start_stop_flag) {
-      alert('ストップする');
-      location.reload();
-    }
+    this.reset();
   }
 }
 
