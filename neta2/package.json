@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "start": "parcel src/index.html --out-dir public",
+    "build": "parcel build ./src/index.html --public-url ./ -d dist --no-source-maps"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@vue/component-compiler-utils": "^3.1.1",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "typescript": "^3.8.3",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.7.0",
+    "parcel-bundler": "^1.12.4",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.1.3"
+  }
+}
