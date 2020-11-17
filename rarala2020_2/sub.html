@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="info" style="display: none">
+      <a href="" id="back">もどる</a><br /><br />
+      <a href="" 　target="_blank" rel="noopener noreferrer" id="tweet"
+        >ツイートする</a
+      ><br /><br />
+
+      <div class="form-group">
+        <textarea
+          class="form-control"
+          rows="3"
+          maxlength="150"
+          style="width: 50%"
+          id="textarea"
+          readonly
+        ></textarea>
+      </div>
+    </div>
+
+    <div
+      id="loading"
+      className="position-absolute h-100 w-100 m-0 d-flex align-items-center justify-content-center"
+    >
+      <div className="spinner-border text-primary" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-firestore.js"></script>
+    <script src="js/sub.js"></script>
+  </body>
+</html>
