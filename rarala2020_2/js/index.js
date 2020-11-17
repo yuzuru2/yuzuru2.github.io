@@ -35,5 +35,3 @@ document.getElementById('button').onclick = async () => {
     alert('エラー発生');
   }
 };
-
-console.log(location.href);
